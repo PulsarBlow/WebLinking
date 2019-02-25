@@ -1,0 +1,11 @@
+<Project>
+    <PropertyGroup Label="Package Versions">
+        <CodeQualityAnalyzersVersion>2.6.3</CodeQualityAnalyzersVersion>
+        <CoverletMsBuildVersion>2.5.1</CoverletMsBuildVersion>
+        <MoqVersion>4.10.1</MoqVersion>
+        <StyleCopAnalyzersVersion>1.0.2</StyleCopAnalyzersVersion>
+        <TestSdkVersion>15.9.0</TestSdkVersion>
+        <XunitVersion>2.4.1</XunitVersion>
+        <XunitRunnerVisualStudioVersion>2.4.1</XunitRunnerVisualStudioVersion>
+    </PropertyGroup>
+</Project>

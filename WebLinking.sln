@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".misc", ".misc", "{09528F97-9EB1-4059-AAE2-B849A6C76390}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
+		tests.runsettings = tests.runsettings
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{968D2F6F-40CC-41D9-84DF-CBDF9A2778B9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebLinking.Core", "src\WebLinking.Core\WebLinking.Core.csproj", "{1BC7FAE6-E0BA-498C-8D76-399F26DB1AB4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebLinking.Core.Tests.UnitTests", "src\WebLinking.Core.Tests.UnitTests\WebLinking.Core.Tests.UnitTests.csproj", "{DFD45C95-5761-4436-8827-B24302E14D0B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{EEC1A317-BA7A-4865-9670-359133D9F7C6}"
+	ProjectSection(SolutionItems) = preProject
+		build\codeanalysis.props = build\codeanalysis.props
+		build\common.props = build\common.props
+		build\dependencies.props = build\dependencies.props
+		build\packages.props = build\packages.props
+		build\version.props = build\version.props
+		build\WebLinking.Analyzers.ruleset = build\WebLinking.Analyzers.ruleset
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1BC7FAE6-E0BA-498C-8D76-399F26DB1AB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BC7FAE6-E0BA-498C-8D76-399F26DB1AB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BC7FAE6-E0BA-498C-8D76-399F26DB1AB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BC7FAE6-E0BA-498C-8D76-399F26DB1AB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFD45C95-5761-4436-8827-B24302E14D0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFD45C95-5761-4436-8827-B24302E14D0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFD45C95-5761-4436-8827-B24302E14D0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFD45C95-5761-4436-8827-B24302E14D0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1BC7FAE6-E0BA-498C-8D76-399F26DB1AB4} = {968D2F6F-40CC-41D9-84DF-CBDF9A2778B9}
+		{DFD45C95-5761-4436-8827-B24302E14D0B} = {968D2F6F-40CC-41D9-84DF-CBDF9A2778B9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A6E721C8-6502-4E64-BB76-EFEC1D7C721B}
+	EndGlobalSection
+EndGlobal

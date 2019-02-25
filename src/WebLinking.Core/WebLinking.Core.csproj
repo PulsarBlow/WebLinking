@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\..\build\packages.props" />
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <Description>A .NET implementation of the Web Linking proposed standard RFC8288</Description>
+    </PropertyGroup>
+
+</Project>

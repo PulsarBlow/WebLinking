@@ -1,0 +1,9 @@
+<Project>
+
+  <PropertyGroup>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionSuffix>beta</VersionSuffix>
+    <Version Condition=" '$(BuildMetadata)' != '' ">$(VersionPrefix)-$(VersionSuffix)+$(BuildMetadata)</Version>
+  </PropertyGroup>
+
+</Project>
