@@ -33,6 +33,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebLinking.Integration.AspN
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebLinking.Integration.AspNetCore.Tests.UnitTests", "src\WebLinking.Integration.AspNetCore.Tests.UnitTests\WebLinking.Integration.AspNetCore.Tests.UnitTests.csproj", "{D13040DD-F7F8-4B7F-9D46-7D6F377A4B87}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{8041FFB4-2897-4C33-A585-AC22C6B31E98}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebLinking.DemoApi", "demo\WebLinking.DemoApi\WebLinking.DemoApi.csproj", "{1664302E-74F9-44AC-A823-4CE00C10C67E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +59,10 @@ Global
 		{D13040DD-F7F8-4B7F-9D46-7D6F377A4B87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D13040DD-F7F8-4B7F-9D46-7D6F377A4B87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D13040DD-F7F8-4B7F-9D46-7D6F377A4B87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1664302E-74F9-44AC-A823-4CE00C10C67E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1664302E-74F9-44AC-A823-4CE00C10C67E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1664302E-74F9-44AC-A823-4CE00C10C67E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1664302E-74F9-44AC-A823-4CE00C10C67E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +72,7 @@ Global
 		{DFD45C95-5761-4436-8827-B24302E14D0B} = {968D2F6F-40CC-41D9-84DF-CBDF9A2778B9}
 		{01BF230E-3F73-4306-9179-3572B6DB8122} = {968D2F6F-40CC-41D9-84DF-CBDF9A2778B9}
 		{D13040DD-F7F8-4B7F-9D46-7D6F377A4B87} = {968D2F6F-40CC-41D9-84DF-CBDF9A2778B9}
+		{1664302E-74F9-44AC-A823-4CE00C10C67E} = {8041FFB4-2897-4C33-A585-AC22C6B31E98}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A6E721C8-6502-4E64-BB76-EFEC1D7C721B}
