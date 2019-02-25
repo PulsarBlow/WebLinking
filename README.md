@@ -2,7 +2,7 @@
 
 > A .NET implementation of the Web Linking proposed standard [RFC8288](https://tools.ietf.org/html/rfc8288)
 
-[![NuGet](https://img.shields.io/nuget/v/WebLinking.Core.svg)](https://www.nuget.org/packages/WebLinking.Core/) [![netstandard 2.0](https://img.shields.io/badge/netstandard-2.0-brightgreen.svg)](https://docs.microsoft.com/en-us/dotnet/standard/net-standard)
+[![NuGet](https://img.shields.io/nuget/v/WebLinking.Core.svg)](https://www.nuget.org/packages/WebLinking.Core/) [![netstandard 2.0](https://img.shields.io/badge/netstandard-2.0-brightgreen.svg)](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) [![Coverage Status](https://coveralls.io/repos/github/PulsarBlow/WebLinking/badge.svg?branch=master)](https://coveralls.io/github/PulsarBlow/WebLinking?branch=master) [![Build status](https://ci.appveyor.com/api/projects/status/9s0jc8c063yf3y7f?svg=true)](https://ci.appveyor.com/project/PulsarBlow/weblinking)
 
 The RFC8288 is a specification that defines a model for the relationships between resources on the Web ("links") and the type of those relationships ("link relation types"). It also defines the serialisation of such links in HTTP headers with the Link header field.
 
