@@ -55,8 +55,8 @@ try {
 
     # Publish coverage
     if ($env:CI -eq 'True') {
-        #WriteAndExecute "dotnet tool install coveralls.net --tool-path `"${toolsPath}`""
-        #WriteAndExecute ". `"${toolsPath}csmacnz.Coveralls`" --opencover -i `"${uploadFile}`""
+        WriteAndExecute "dotnet tool install coveralls.net --tool-path `"${toolsPath}`""
+        WriteAndExecute ". `"${toolsPath}csmacnz.Coveralls`" --opencover -i `"${uploadFile}`""
     }
     else {
         WriteAndExecute "dotnet tool install dotnet-reportgenerator-globaltool --tool-path `"${toolsPath}`""
