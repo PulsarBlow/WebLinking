@@ -52,10 +52,17 @@ try {
         WriteAndExecute "dotnet test /p:CollectCoverage=true /p:Include=`"[WebLinking.*]*`" /p:ExcludeByAttribute=System.Diagnostics.DebuggerNonUserCodeAttribute /p:CoverletOutput=`"${outputPath}`" /p:MergeWith=`"${mergeFile}`" /p:CoverletOutputFormat=opencover%2Cjson ${dotnetTestArgs}"
     }
 
-    WriteAndExecute "dotnet tool install dotnet-reportgenerator-globaltool --tool-path `"${toolsPath}`""
-    WriteAndExecute ". `"${toolsPath}reportgenerator`" -reports:`"${uploadFile}`" -targetdir:`"${outputPath}`""
-    Set-Location $outputPath
-    ./index.htm
 
+    # Publish coverage
+    if ($env:CI -eq 'True') {
+        #WriteAndExecute "dotnet tool install coveralls.net --tool-path `"${toolsPath}`""
+        #WriteAndExecute ". `"${toolsPath}csmacnz.Coveralls`" --opencover -i `"${uploadFile}`""
+    }
+    else {
+        WriteAndExecute "dotnet tool install dotnet-reportgenerator-globaltool --tool-path `"${toolsPath}`""
+        WriteAndExecute ". `"${toolsPath}reportgenerator`" -reports:`"${uploadFile}`" -targetdir:`"${outputPath}`""
+        Set-Location $outputPath
+        ./index.htm
+    }
 } finally { Pop-Location }
 
