@@ -21,7 +21,11 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageReleaseNotes>
-    * 1.0.0: Initial version
+        * 1.0.1
+            - Add support for net461 (as per dotnet standard guidelines)
+            - Upgrade external dependencies
+        * 1.0.0
+            - Initial version
     </PackageReleaseNotes>
   </PropertyGroup>
 
