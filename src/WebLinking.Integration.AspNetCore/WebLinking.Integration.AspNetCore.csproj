@@ -2,7 +2,7 @@
     <Import Project="..\..\build\packages.props" />
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
         <Description>WebLinking AspNetCore Integration</Description>
     </PropertyGroup>
 
