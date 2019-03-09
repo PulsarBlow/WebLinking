@@ -84,3 +84,16 @@ Who is using Web Linking ?
 -   [PandaScore](https://developers.pandascore.co/doc/#section/Introduction/Pagination)
 
 just to name of few...
+
+### Implementation notes
+
+The current proposed standard leave some place for some interpretations. Implementation interpretations are disambiguated in the following points :
+
+-   Multiple identical link relation types
+
+> The rel parameter can, however, contain multiple link relation types.
+> When this occurs, it establishes multiple links that share the same
+> context, target, and target attributes.
+
+Nothing is specified concerning multiple identical link relation types.
+Thus, this implementation does not deduplicate multiple identical link relation types.
