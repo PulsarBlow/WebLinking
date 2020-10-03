@@ -2,7 +2,7 @@
 
 > A .NET implementation of the Web Linking proposed standard [RFC8288](https://tools.ietf.org/html/rfc8288)
 
-[![NuGet](https://img.shields.io/nuget/v/WebLinking.Core.svg)](https://www.nuget.org/packages/WebLinking.Core/) [![netstandard 2.0](https://img.shields.io/badge/netstandard-2.0-brightgreen.svg)](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) [![Coverage Status](https://coveralls.io/repos/github/PulsarBlow/WebLinking/badge.svg?branch=master)](https://coveralls.io/github/PulsarBlow/WebLinking?branch=master) [![Build status](https://ci.appveyor.com/api/projects/status/9s0jc8c063yf3y7f?svg=true)](https://ci.appveyor.com/project/PulsarBlow/weblinking)
+[![NuGet](https://img.shields.io/nuget/v/WebLinking.Core.svg)](https://www.nuget.org/packages/WebLinking.Core/) [![netstandard 2.0](https://img.shields.io/badge/netstandard-2.0-brightgreen.svg)](https://docs.microsoft.com/en-us/dotnet/standard/net-standard)
 
 The RFC8288 is a specification that defines a model for the relationships between resources on the Web ("links") and the type of those relationships ("link relation types"). It also defines the serialisation of such links in HTTP headers with the Link header field.
 
@@ -16,7 +16,7 @@ This implementation provides two .NET Standard 2.0 NuGet packages and a demo MVC
 
 ### WebLinking.Core
 
-The core implementation of the specification.  
+The core implementation of the specification.
 Provides Link header format definition and abstractions.
 
 The bare minimum to support Link header in your .NET project.
@@ -47,7 +47,7 @@ A sample project to demo how to integrate WebLinking into an AspNetCore Mvc appl
 
 ## What is Web Linking ?
 
-Without being limited to that, Web Link is often seen as an API pagination mean.  
+Without being limited to that, Web Link is often seen as an API pagination mean.
 It is a lightweight alternative to HATOAS, where pagination cursors are embedded in the resource representation.
 With Web Linking, pagination cursors are sent in the header of the HTTP response.
 
@@ -66,7 +66,7 @@ Beside specifying the Link format, Web Linking also defines how links should be 
 
 In opposite to a more traditional HATOAS approach, where Links are conveyed inside the Resource representation, with Web Linking links are conveyed in a Link HTTP header.
 
-This difference is subtle but it helps producing a lightweight Resource representation.  
+This difference is subtle but it helps producing a lightweight Resource representation.
 When you need to convey the Link in the response body, you need to wrap your Resource definition into a more verbose structure.
 
 With Web Linking you can just return a `pure` Resource representation.

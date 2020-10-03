@@ -3,7 +3,8 @@
   <PropertyGroup>
     <VersionPrefix>1.0.1</VersionPrefix>
     <VersionSuffix>beta</VersionSuffix>
-    <Version Condition=" '$(BuildMetadata)' != '' ">$(VersionPrefix)-$(VersionSuffix)+$(BuildMetadata)</Version>
+    <Version Condition=" '$(BuildMetadata)' != '' and '$(VersionSuffix)' != '' ">$(VersionPrefix)-$(VersionSuffix)+$(BuildMetadata)</Version>
+    <Version Condition=" '$(BuildMetadata)' != '' and '$(VersionSuffix)' == '' ">$(VersionPrefix)+$(BuildMetadata)</Version>
   </PropertyGroup>
 
 </Project>

@@ -1,0 +1,95 @@
+# This workflow is triggered when a tag is pushed to master branch
+# It will:
+# - Build the project and generate a nuget package
+# - Publish it to Github Packages and Nuget.org Packages repositories
+# - Create a Github release
+
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+name: Release
+jobs:
+  build:
+    name: Build package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 2.1.810
+      - name: Build project
+        run: dotnet build -c Release
+      - name: Generate package
+        run: |
+          dotnet pack --no-build --include-symbols -c Release -o .build/nuget -p:RepositoryBranch=${{github.ref}} -p:RepositoryCommit=${{github.sha}}
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: packages
+          path: .build/nuget
+
+  publish-to-github:
+    name: Publish to Github
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 2.1.810
+          source-url: https://nuget.pkg.github.com/PulsarBlow/index.json
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: packages
+          path: .
+      - name: Publish package
+        run: |
+          dotnet nuget push "*.nupkg" --skip-duplicate
+
+  publish-to-nuget:
+    name: Publish to NuGet
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
+    steps:
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 2.1.810
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: packages
+          path: .
+      - name: Publish package
+        run: |
+          dotnet nuget push "*.nupkg" -k $NUGET_AUTH_TOKEN -sk $NUGET_AUTH_TOKEN --skip-duplicate -s https://api.nuget.org/v3/index.json
+
+  create-github-release:
+    name: Create Github release
+    needs: [ publish-to-github, publish-to-nuget ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Automaticaly provided by Github workflow
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: false
+          # Prerelease if tag contains `-` character
+          prerelease: ${{ contains(github.ref, '-') }}

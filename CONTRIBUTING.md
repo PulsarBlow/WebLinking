@@ -1,6 +1,7 @@
 # Contributing
 
-Contributions are highly welcome, however, except for very small changes, kindly file an issue and let's have a discussion before you open a pull request.
+Contributions are highly welcome!\
+However, except for very small changes, kindly file an issue and let's have a discussion before you open a pull request.
 
 ## Building The Project
 
@@ -16,15 +17,14 @@ Change directory to repo root:
 cd weblinking
 ```
 
-Execute build script:
+Build a release and test it:
 
 ```bash
-.\build.ps1
+./scripts/test-release.sh
 ```
 
 This will result in the following:
 
 -   Restore all NuGet packages required for building
--   Build and publish all projects. Final binaries are placed into `<repo_root>\.artifacts\<Configuration>`
--   Build and run tests
--   Compute coverage
+-   Build a release and run tests against it
+-   Compute coverage (into `./.build` temporary directory)
