@@ -9,6 +9,6 @@ dotnet test  --no-restore -m:1 \
     /p:ExcludeByAttribute=\"Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute\" \
     /p:Include=\"[*weblinking.*]*,[*]*WebLinking*\" \
     /p:CollectCoverage=true \
-    /p:CoverletOutput="../../../.build/coverage/" \
+    /p:CoverletOutput="../../.build/coverage/" \
     /p:CoverletOutputFormat=\"opencover,cobertura,json\" \
-    /p:MergeWith="../../../.build/coverage/coverage.json"
+    /p:MergeWith="../../.build/coverage/coverage.json"
