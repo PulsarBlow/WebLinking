@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../../build/common.props"/>
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.msbuild" Version="$(CoverletMsBuildVersion)"/>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(TestSdkVersion)"/>
+    <PackageReference Include="xunit" Version="$(XunitVersion)"/>
+    <PackageReference Include="xunit.runner.visualstudio" Version="$(XUnitRunnerVersion)"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../src/WebLinking.Core/WebLinking.Core.csproj"/>
+  </ItemGroup>
+
+</Project>

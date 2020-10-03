@@ -1,18 +1,17 @@
 <Project>
 
-    <Import Project="version.props" />
-    <Import Project="dependencies.props" />
-    <Import Project="codeanalysis.props"/>
+  <Import Project="version.props"/>
+  <Import Project="dependencies.props"/>
 
-    <PropertyGroup>
-        <LangVersion>latest</LangVersion>
-        <NoWarn>$(NoWarn);CS1591;NU5125;NU5105</NoWarn>
-        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <DebugType Condition=" '$(Configuration)' != 'Debug' ">portable</DebugType>
-        <IncludeSymbols>true</IncludeSymbols>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <NoWarn>$(NoWarn);CS1591;NU5125;NU5105</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DebugType Condition=" '$(Configuration)' != 'Debug' ">portable</DebugType>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
 
 </Project>
