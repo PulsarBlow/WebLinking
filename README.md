@@ -4,7 +4,7 @@
 
 [![NuGet](https://img.shields.io/nuget/v/WebLinking.Core.svg)](https://www.nuget.org/packages/WebLinking.Core/) [![netstandard 2.0](https://img.shields.io/badge/netstandard-2.0-brightgreen.svg)](https://docs.microsoft.com/en-us/dotnet/standard/net-standard)
 
-The RFC8288 is a specification that defines a model for the relationships between resources on the Web ("links") and the type of those relationships ("link relation types"). It also defines the serialisation of such links in HTTP headers with the Link header field.
+The RFC8288 is a [IETF](https://www.ietf.org/) specification that defines a model for the relationships between resources on the Web ("links") and the type of those relationships ("link relation types"). It also defines the serialisation of such links in HTTP headers with the `Link` header field.
 
 This .NET Standard library is a strict implementation of this specification.
 
@@ -16,16 +16,10 @@ This implementation provides two .NET Standard 2.0 NuGet packages and a demo MVC
 
 ### WebLinking.Core
 
-The core implementation of the specification.
-Provides Link header format definition and abstractions.
+The core implementation of the specification.\
+Provides Link header format definition and abstractions.\
 
-The bare minimum to support Link header in your .NET project.
-
-#### package manager
-
-`Install-Package WebLinking.Core`
-
-#### dotnet cli
+This library helps you add Web Linking RFC support into your .NET Application (.NET Framework or .NET Core).
 
 `dotnet add package WebLinking.Core`
 
@@ -33,23 +27,19 @@ The bare minimum to support Link header in your .NET project.
 
 AspNet Core MVC integration layer and abstractions.
 
-#### package manager
-
-`Install-Package WebLinking.Integration.AspNetCore`
-
-#### dotnet cli
+This library helps you integrate Web Linking support into your ASP.NET Core MVC application.\
 
 `dotnet add package WebLinking.Integration.AspNetCore`
 
 ### WebLinking.DemoApi
 
-A sample project to demo how to integrate WebLinking into an AspNetCore Mvc application
+A sample project to demo how to integrate WebLinking into an AspNetCore Mvc application.
 
 ## What is Web Linking ?
 
-Without being limited to that, Web Link is often seen as an API pagination mean.
-It is a lightweight alternative to HATOAS, where pagination cursors are embedded in the resource representation.
-With Web Linking, pagination cursors are sent in the header of the HTTP response.
+Without being limited to that, Web Link is often seen as an API pagination mean.\
+It is a lightweight alternative to HATOAS, where pagination cursors are embedded in the resource representation.\
+With Web Linking, pagination cursors are sent in the header of the HTTP response.\
 
 For example, [Github API v3](https://developer.github.com/v3/#pagination) uses Web Linking to express pagination cursors :
 
@@ -66,7 +56,7 @@ Beside specifying the Link format, Web Linking also defines how links should be 
 
 In opposite to a more traditional HATOAS approach, where Links are conveyed inside the Resource representation, with Web Linking links are conveyed in a Link HTTP header.
 
-This difference is subtle but it helps producing a lightweight Resource representation.
+This difference is subtle but it helps producing a lightweight Resource representation.\
 When you need to convey the Link in the response body, you need to wrap your Resource definition into a more verbose structure.
 
 With Web Linking you can just return a `pure` Resource representation.
@@ -95,5 +85,5 @@ The current proposed standard leave some place for some interpretations. Impleme
 > When this occurs, it establishes multiple links that share the same
 > context, target, and target attributes.
 
-Nothing is specified concerning multiple identical link relation types.
+Nothing is specified concerning multiple identical link relation types.\
 Thus, this implementation does not deduplicate multiple identical link relation types.
