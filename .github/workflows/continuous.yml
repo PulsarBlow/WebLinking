@@ -17,7 +17,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 3.1.401
+          dotnet-version: 2.1.810
       - name: Test release
         run: ./scripts/test-release.sh
       - name: Publish coverage to Codacy

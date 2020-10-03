@@ -1,6 +1,6 @@
 # Contributing
 
-Contributions are highly welcome!
+Contributions are highly welcome!\
 However, except for very small changes, kindly file an issue and let's have a discussion before you open a pull request.
 
 ## Building The Project
