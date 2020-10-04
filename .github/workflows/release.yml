@@ -15,6 +15,9 @@ jobs:
   build:
     name: Build package
     runs-on: ubuntu-latest
+    env:
+      GIT_COMMIT: ${{github.sha}}
+      GIT_BRANCH: ${{github.ref}}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -26,7 +29,7 @@ jobs:
         run: dotnet build -c Release
       - name: Generate package
         run: |
-          dotnet pack --no-build --include-symbols -c Release -o .build/nuget -p:RepositoryBranch=${{github.ref}} -p:RepositoryCommit=${{github.sha}}
+          ./scripts/nuget-pack.sh
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v2
         with:
