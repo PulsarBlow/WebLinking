@@ -3,14 +3,18 @@ namespace WebLinking.Integration.AspNetCore.Internals
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Core;
     using Microsoft.AspNetCore.Http.Extensions;
     using Microsoft.AspNetCore.WebUtilities;
     using Microsoft.Extensions.Primitives;
-    using WebLinking.Core;
 
     internal static class LinkValueHelpers
     {
-        public static LinkValue CreateLinkValue(Uri linkTargetUri, string relationType, int offset, int limit)
+        public static LinkValue CreateLinkValue(
+            Uri linkTargetUri,
+            string relationType,
+            int offset,
+            int limit)
         {
             if (linkTargetUri == null)
             {
@@ -19,17 +23,27 @@ namespace WebLinking.Integration.AspNetCore.Internals
 
             if (string.IsNullOrWhiteSpace(relationType))
             {
-                throw new ArgumentException("relationType is not valid", nameof(relationType));
+                throw new ArgumentException(
+                    "relationType is not valid",
+                    nameof(relationType));
             }
 
-            UriBuilder builder = new UriBuilder(linkTargetUri);
+            var builder = new UriBuilder(linkTargetUri);
 
             var query = QueryHelpers.ParseQuery(builder.Query);
             query["offset"] = new StringValues(offset.ToString());
             query["limit"] = new StringValues(limit.ToString());
 
-            var queryBuilder = new QueryBuilder(query.SelectMany(x => x.Value, (col, v) => new KeyValuePair<string, string>(col.Key, v)));
-            builder.Query = queryBuilder.ToQueryString().ToString();
+            var queryBuilder = new QueryBuilder(
+                query.SelectMany(
+                    x => x.Value,
+                    (
+                        col,
+                        v) => new KeyValuePair<string, string>(
+                        col.Key,
+                        v)));
+            builder.Query = queryBuilder.ToQueryString()
+                .ToString();
 
             return new LinkValue
             {
@@ -38,7 +52,9 @@ namespace WebLinking.Integration.AspNetCore.Internals
             };
         }
 
-        public static IEnumerable<LinkValue> CreateLinkValueCollection<TItem>(Uri linkTargetUri, IPagedCollection<TItem> pagedCollection)
+        public static IEnumerable<LinkValue> CreateLinkValueCollection<TItem>(
+            Uri linkTargetUri,
+            IPagedCollection<TItem> pagedCollection)
         {
             if (linkTargetUri == null)
             {
@@ -50,31 +66,33 @@ namespace WebLinking.Integration.AspNetCore.Internals
                 throw new ArgumentNullException(nameof(pagedCollection));
             }
 
-            List<LinkValue> linkValues = new List<LinkValue>
+            var linkValues = new List<LinkValue>
             {
                 CreateLinkValue(
                     linkTargetUri,
                     LinkRelationRegistry.Start,
                     0,
-                    pagedCollection.Limit)
+                    pagedCollection.Limit),
             };
 
             if (pagedCollection.HasPrevious)
             {
-                linkValues.Add(CreateLinkValue(
-                    linkTargetUri,
-                    LinkRelationRegistry.Previous,
-                    pagedCollection.Offset - pagedCollection.Limit,
-                    pagedCollection.Limit));
+                linkValues.Add(
+                    CreateLinkValue(
+                        linkTargetUri,
+                        LinkRelationRegistry.Previous,
+                        pagedCollection.Offset - pagedCollection.Limit,
+                        pagedCollection.Limit));
             }
 
             if (pagedCollection.HasNext)
             {
-                linkValues.Add(CreateLinkValue(
-                    linkTargetUri,
-                    LinkRelationRegistry.Next,
-                    pagedCollection.Offset + pagedCollection.Limit,
-                    pagedCollection.Limit));
+                linkValues.Add(
+                    CreateLinkValue(
+                        linkTargetUri,
+                        LinkRelationRegistry.Next,
+                        pagedCollection.Offset + pagedCollection.Limit,
+                        pagedCollection.Limit));
             }
 
             return linkValues;

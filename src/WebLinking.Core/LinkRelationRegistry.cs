@@ -7,6 +7,10 @@ namespace WebLinking.Core
 
     public class LinkRelationRegistry
     {
+        private readonly ISet<string> _registeredRelations;
+        private static readonly ISet<string> DefaultRegisteredRelations =
+            new HashSet<string>(GetRegisteredRelationValues());
+
         public const string About = "about";
         public const string Alternate = "alternate";
         public const string Appendix = "appendix";
@@ -89,40 +93,39 @@ namespace WebLinking.Core
         public const string WorkingCopyOf = "working-copy-of";
 
         public LinkRelationRegistry()
-            : this(defaultRegisteredRelations)
+            : this(DefaultRegisteredRelations)
         {
         }
 
-        public LinkRelationRegistry(ICollection<string> registeredRelations)
+        public LinkRelationRegistry(
+            ICollection<string> registeredRelations)
         {
             if (registeredRelations == null)
             {
                 throw new ArgumentNullException(nameof(registeredRelations));
             }
 
-            this.registeredRelations = new HashSet<string>(registeredRelations);
+            this._registeredRelations =
+                new HashSet<string>(registeredRelations);
         }
 
-        public bool IsRegisteredRelation(string linkRelation)
+        public bool IsRegisteredRelation(
+            string linkRelation)
         {
-            if (string.IsNullOrWhiteSpace(linkRelation))
-            {
-                return false;
-            }
+            if (string.IsNullOrWhiteSpace(linkRelation)) { return false; }
 
-            return this.registeredRelations.Contains(linkRelation, StringComparer.Ordinal);
+            return _registeredRelations.Contains(
+                linkRelation,
+                StringComparer.Ordinal);
         }
 
-        private static List<string> GetRegisteredRelationValues()
+        private static IEnumerable<string> GetRegisteredRelationValues()
         {
             return typeof(LinkRelationRegistry)
                 .GetFields(BindingFlags.Public | BindingFlags.Static)
                 .Where(x => x.IsLiteral)
-                .Select(x => (string)x.GetRawConstantValue())
+                .Select(x => (string) x.GetRawConstantValue())
                 .ToList();
         }
-
-        private readonly ISet<string> registeredRelations = null;
-        private static ISet<string> defaultRegisteredRelations = new HashSet<string>(GetRegisteredRelationValues());
     }
 }

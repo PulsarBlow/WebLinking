@@ -2,61 +2,78 @@ namespace WebLinking.Integration.AspNetCore.Tests.UnitTests.Internals
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
-    using WebLinking.Core;
-    using WebLinking.Integration.AspNetCore.Internals;
+    using AspNetCore.Internals;
+    using Core;
     using Xunit;
 
     public class LinkValueHelpersTest
     {
-        private readonly IEqualityComparer<LinkValue> _comparer = new LinkValueComparer();
+        private readonly IEqualityComparer<LinkValue> _comparer =
+            new LinkValueComparer();
 
-        private readonly Uri _linkTargetUri = new Uri("https://localhost:1337/values?param=value");
+        private readonly Uri _linkTargetUri =
+            new Uri("https://localhost:1337/values?param=value");
 
         private readonly LinkValue _start = new LinkValue
         {
             RelationType = new LinkRelationType(LinkRelationRegistry.Start),
-            TargetUri = new Uri("https://localhost:1337/values?param=value&offset=0&limit=5"),
+            TargetUri = new Uri(
+                "https://localhost:1337/values?param=value&offset=0&limit=5"),
         };
 
         private readonly LinkValue _previous = new LinkValue
         {
             RelationType = new LinkRelationType(LinkRelationRegistry.Previous),
-            TargetUri = new Uri("https://localhost:1337/values?param=value&offset=0&limit=5"),
+            TargetUri = new Uri(
+                "https://localhost:1337/values?param=value&offset=0&limit=5"),
         };
 
         private readonly LinkValue _next = new LinkValue
         {
             RelationType = new LinkRelationType(LinkRelationRegistry.Next),
-            TargetUri = new Uri("https://localhost:1337/values?param=value&offset=10&limit=5"),
+            TargetUri = new Uri(
+                "https://localhost:1337/values?param=value&offset=10&limit=5"),
         };
 
-        private readonly ObjectPagedCollection _pagedCollection = new ObjectPagedCollection
-        {
-            HasPrevious = true,
-            HasNext = true,
-            Limit = 5,
-            Offset = 5,
-            TotalSize = 15,
-        };
+        private readonly ObjectPagedCollection _pagedCollection =
+            new ObjectPagedCollection
+            {
+                HasPrevious = true,
+                HasNext = true,
+                Limit = 5,
+                Offset = 5,
+                TotalSize = 15,
+            };
 
         [Fact]
         public void CreateLinkValue_Throws_When_Uri_Is_Null()
         {
             Assert.Throws<ArgumentNullException>(
                 "linkTargetUri",
-                () => LinkValueHelpers.CreateLinkValue(null, "relationType", int.MaxValue, int.MaxValue));
+                () => LinkValueHelpers.CreateLinkValue(
+                    null,
+                    "relationType",
+                    int.MaxValue,
+                    int.MaxValue));
         }
 
         [Theory]
         [InlineData(null)]
         [InlineData("")]
         [InlineData(" ")]
-        public void CreateLinkValue_Throws_When_RelationType_Is_NullEmptyOrWhitespace(string value)
+        public void
+            CreateLinkValue_Throws_When_RelationType_Is_NullEmptyOrWhitespace(
+                string value)
         {
             Assert.Throws<ArgumentException>(
                 "relationType",
-                () => LinkValueHelpers.CreateLinkValue(new Uri("http://localhost/"), value, int.MaxValue, int.MaxValue));
+                () => LinkValueHelpers.CreateLinkValue(
+                    new Uri("http://localhost/"),
+                    value,
+                    int.MaxValue,
+                    int.MaxValue));
         }
 
         [Theory]
@@ -77,64 +94,124 @@ namespace WebLinking.Integration.AspNetCore.Tests.UnitTests.Internals
             int limit)
         {
             string relationType = "relationType";
-            var result = LinkValueHelpers.CreateLinkValue(new Uri(value), relationType, offset, limit);
+            var result = LinkValueHelpers.CreateLinkValue(
+                new Uri(value),
+                relationType,
+                offset,
+                limit);
 
             Assert.NotNull(result);
-            Assert.Contains(relationType, result.RelationType.Relations);
-            Assert.Equal(expected, result.TargetUri.ToString());
+            Assert.Contains(
+                relationType,
+                result.RelationType.Relations);
+            Assert.Equal(
+                expected,
+                result.TargetUri.ToString());
         }
 
         [Fact]
-        public void CreateLinkValueCollection_Throws_When_LinkTargetUri_Is_Null()
+        public void
+            CreateLinkValueCollection_Throws_When_LinkTargetUri_Is_Null()
         {
             Assert.Throws<ArgumentNullException>(
                 "linkTargetUri",
-                () => LinkValueHelpers.CreateLinkValueCollection(null, new ObjectPagedCollection()));
+                () => LinkValueHelpers.CreateLinkValueCollection(
+                    null,
+                    new ObjectPagedCollection()));
         }
 
         [Fact]
-        public void CreateLinkValueCollection_Throws_When_PagedCollection_Is_Null()
+        public void
+            CreateLinkValueCollection_Throws_When_PagedCollection_Is_Null()
         {
             Assert.Throws<ArgumentNullException>(
                 "pagedCollection",
-                () => LinkValueHelpers.CreateLinkValueCollection(new Uri("http://localhost/"), (IPagedCollection<object>)null));
+                () => LinkValueHelpers.CreateLinkValueCollection(
+                    new Uri("http://localhost/"),
+                    (IPagedCollection<object>) null));
         }
 
         [Fact]
         public void CreateLinkValueCollection_Returns_LinkValueCollection()
         {
-            var result = LinkValueHelpers.CreateLinkValueCollection(_linkTargetUri, _pagedCollection);
+            var result = LinkValueHelpers.CreateLinkValueCollection(
+                _linkTargetUri,
+                _pagedCollection);
 
-            Assert.Equal(3, result.Count());
-            Assert.Contains(_start, result, _comparer);
-            Assert.Contains(_previous, result, _comparer);
-            Assert.Contains(_next, result, _comparer);
+            var linkValues = result as LinkValue[] ?? result.ToArray();
+
+            Assert.Equal(
+                3,
+                linkValues.Length);
+            Assert.Contains(
+                _start,
+                linkValues,
+                _comparer);
+            Assert.Contains(
+                _previous,
+                linkValues,
+                _comparer);
+            Assert.Contains(
+                _next,
+                linkValues,
+                _comparer);
         }
 
         [Fact]
-        public void CreateLinkValueCollection_Returns_LinkValueCollection_Without_Previous_LinkValue()
+        public void
+            CreateLinkValueCollection_Returns_LinkValueCollection_Without_Previous_LinkValue()
         {
             _pagedCollection.HasPrevious = false;
 
-            var result = LinkValueHelpers.CreateLinkValueCollection(_linkTargetUri, _pagedCollection);
+            var result = LinkValueHelpers.CreateLinkValueCollection(
+                _linkTargetUri,
+                _pagedCollection);
 
-            Assert.Equal(2, result.Count());
-            Assert.Contains(_start, result, _comparer);
-            Assert.DoesNotContain(_previous, result, _comparer);
-            Assert.Contains(_next, result, _comparer);
+            var linkValues = result as LinkValue[] ?? result.ToArray();
+
+            Assert.Equal(
+                2,
+                linkValues.Length);
+            Assert.Contains(
+                _start,
+                linkValues,
+                _comparer);
+            Assert.DoesNotContain(
+                _previous,
+                linkValues,
+                _comparer);
+            Assert.Contains(
+                _next,
+                linkValues,
+                _comparer);
         }
 
         [Fact]
-        public void CreateLinkValueCollection_Returns_LinkValueCollection_Without_Next_LinkValue()
+        public void
+            CreateLinkValueCollection_Returns_LinkValueCollection_Without_Next_LinkValue()
         {
             _pagedCollection.HasNext = false;
 
-            var result = LinkValueHelpers.CreateLinkValueCollection(_linkTargetUri, _pagedCollection);
+            var result = LinkValueHelpers.CreateLinkValueCollection(
+                _linkTargetUri,
+                _pagedCollection);
 
-            Assert.Equal(2, result.Count());
-            Assert.Contains(_start, result, new LinkValueComparer());
-            Assert.Contains(_previous, result, new LinkValueComparer());
-            Assert.DoesNotContain(_next, result, new LinkValueComparer());
+            var linkValues = result as LinkValue[] ?? result.ToArray();
+            Assert.Equal(
+                2,
+                linkValues.Length);
+            Assert.Contains(
+                _start,
+                linkValues,
+                new LinkValueComparer());
+            Assert.Contains(
+                _previous,
+                linkValues,
+                new LinkValueComparer());
+            Assert.DoesNotContain(
+                _next,
+                linkValues,
+                new LinkValueComparer());
         }
 
         private class ObjectPagedCollection : IPagedCollection<object>
@@ -154,16 +231,23 @@ namespace WebLinking.Integration.AspNetCore.Tests.UnitTests.Internals
 
         private class LinkValueComparer : IEqualityComparer<LinkValue>
         {
-            public bool Equals(LinkValue x, LinkValue y)
+            public bool Equals(
+                LinkValue x,
+                LinkValue y)
             {
-                return x.RelationType.ToString() == y.RelationType.ToString() &&
-                    x.TargetUri.ToString() == y.TargetUri.ToString();
+                Debug.Assert(
+                    x != null,
+                    nameof(x) + " != null");
+                Debug.Assert(
+                    y != null,
+                    nameof(y) + " != null");
+                return x.RelationType.ToString() == y.RelationType.ToString()
+                    && x.TargetUri.ToString() == y.TargetUri.ToString();
             }
 
-            public int GetHashCode(LinkValue obj)
-            {
-                return obj.GetHashCode();
-            }
+            public int GetHashCode(
+                LinkValue obj)
+                => obj.GetHashCode();
         }
     }
 }

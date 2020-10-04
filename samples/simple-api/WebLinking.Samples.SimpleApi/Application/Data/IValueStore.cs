@@ -4,8 +4,11 @@ namespace WebLinking.Samples.SimpleApi.Application.Data
 
     public interface IValueStore
     {
-        ValueModel GetById(int id);
+        ValueModel GetById(
+            int id);
 
-        PagedCollection<ValueModel> GetPagedCollection(int offset, int limit);
+        PagedCollection<ValueModel> GetPagedCollection(
+            int offset,
+            int limit);
     }
 }

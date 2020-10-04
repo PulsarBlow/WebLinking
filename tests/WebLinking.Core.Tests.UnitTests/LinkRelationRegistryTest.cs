@@ -30,14 +30,17 @@ namespace WebLinking.Core.Tests.UnitTests
         {
             var registry = new LinkRelationRegistry();
 
-            Assert.True(registry.IsRegisteredRelation(LinkRelationRegistry.Appendix));
+            Assert.True(
+                registry.IsRegisteredRelation(LinkRelationRegistry.Appendix));
         }
 
         [Theory]
         [InlineData(null)]
         [InlineData("")]
         [InlineData(" ")]
-        public void IsRegisteredRelation_Returns_False_When_LinkRelation_Is_NullEmptyOrWhiteSpace(string linkRelation)
+        public void
+            IsRegisteredRelation_Returns_False_When_LinkRelation_Is_NullEmptyOrWhiteSpace(
+                string linkRelation)
         {
             var registry = new LinkRelationRegistry();
 
