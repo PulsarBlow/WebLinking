@@ -115,7 +115,7 @@ namespace WebLinking.Core.Tests.UnitTests
                 new LinkParam
                 {
                     Key = "title", Value = "UTF-8'de'nächstes Kapitel",
-                    IsExtendedParameter = true
+                    IsExtendedParameter = true,
                 },
             };
         }

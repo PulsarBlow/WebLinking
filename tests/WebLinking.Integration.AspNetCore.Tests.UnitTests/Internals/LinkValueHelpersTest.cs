@@ -92,7 +92,7 @@ namespace WebLinking.Integration.AspNetCore.Tests.UnitTests.Internals
             int offset,
             int limit)
         {
-            string relationType = "relationType";
+            var relationType = "relationType";
             var result = LinkValueHelpers.CreateLinkValue(
                 new Uri(value),
                 relationType,

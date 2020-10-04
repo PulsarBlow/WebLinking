@@ -105,7 +105,7 @@ namespace WebLinking.Core
                 throw new ArgumentNullException(nameof(registeredRelations));
             }
 
-            this._registeredRelations =
+            _registeredRelations =
                 new HashSet<string>(registeredRelations);
         }
 

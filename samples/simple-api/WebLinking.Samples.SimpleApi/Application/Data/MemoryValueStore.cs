@@ -24,7 +24,7 @@ namespace WebLinking.Samples.SimpleApi.Application.Data
                 .Take(limit);
             return new PagedCollection<ValueModel>(items)
             {
-                HasNext = (offset + limit) < Data.Count,
+                HasNext = offset + limit < Data.Count,
                 HasPrevious = offset > 0,
                 Limit = limit,
                 Offset = offset,

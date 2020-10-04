@@ -126,12 +126,12 @@ namespace WebLinking.Core.Tests.UnitTests
                         {
                             Key = LinkParam.Title,
                             Value = "UTF-8'de'Letztes Kapitel",
-                            IsExtendedParameter = true
+                            IsExtendedParameter = true,
                         })
                     .AddLinkParam(
                         new LinkParam
                         {
-                            Key = LinkParam.Anchor, Value = "should_be_skipped"
+                            Key = LinkParam.Anchor, Value = "should_be_skipped",
                         }),
             };
 
@@ -148,14 +148,14 @@ namespace WebLinking.Core.Tests.UnitTests
                         new LinkParam
                         {
                             Key = LinkParam.Title, Value = "A title",
-                            IsExtendedParameter = false
+                            IsExtendedParameter = false,
                         })
                     .AddLinkParam(
                         new LinkParam
                         {
                             Key = LinkParam.Title,
                             Value = "UTF-8'de'Letztes Kapitel",
-                            IsExtendedParameter = true
+                            IsExtendedParameter = true,
                         }),
             };
         }
