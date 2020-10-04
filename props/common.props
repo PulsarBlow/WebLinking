@@ -1,17 +1,16 @@
 <Project>
 
-  <Import Project="version.props"/>
   <Import Project="dependencies.props"/>
+  <Import Project="version.props"/>
 
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
-    <NoWarn>$(NoWarn);CS1591;NU5125;NU5105</NoWarn>
+    <LangVersion>8.0</LangVersion>
+    <NoWarn>$(NoWarn)</NoWarn>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
     <DebugType Condition=" '$(Configuration)' != 'Debug' ">portable</DebugType>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <Product>WebLinking</Product>
   </PropertyGroup>
 
 </Project>

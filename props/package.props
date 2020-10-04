@@ -1,0 +1,37 @@
+<Project>
+
+  <PropertyGroup>
+
+    <Authors>PulsarBlow</Authors>
+    <Company>pulsarblow.dev</Company>
+    <Copyright>© 2020 Alain Mereaux</Copyright>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/PulsarBlow/WebLinking/</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageTags>weblinking rfc8288 rfc5988 dotnet-standard</PackageTags>
+    <RepositoryUrl>https://github.com/PulsarBlow/WebLinking/</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+
+    <PackageReleaseNotes>
+      * 1.0.1
+      - Add support for net461 (as per dotnet standard guidelines)
+      - Upgrade external dependencies
+      * 1.0.0
+      - Initial version
+    </PackageReleaseNotes>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../../assets/icon-128x128.png" Pack="true" PackagePath="icon.png"/>
+    <None Include="../../LICENSE" Pack="true" PackagePath=""/>
+  </ItemGroup>
+
+</Project>

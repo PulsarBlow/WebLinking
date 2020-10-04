@@ -16,25 +16,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{968D2F6F-40C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebLinking.Core", "src\WebLinking.Core\WebLinking.Core.csproj", "{1BC7FAE6-E0BA-498C-8D76-399F26DB1AB4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{EEC1A317-BA7A-4865-9670-359133D9F7C6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "props", "props", "{EEC1A317-BA7A-4865-9670-359133D9F7C6}"
 	ProjectSection(SolutionItems) = preProject
-		build\common.props = build\common.props
-		build\dependencies.props = build\dependencies.props
-		build\packages.props = build\packages.props
-		build\version.props = build\version.props
+		props\common.props = props\common.props
+		props\dependencies.props = props\dependencies.props
+		props\version.props = props\version.props
+		props\package.props = props\package.props
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebLinking.Integration.AspNetCore", "src\WebLinking.Integration.AspNetCore\WebLinking.Integration.AspNetCore.csproj", "{01BF230E-3F73-4306-9179-3572B6DB8122}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{8041FFB4-2897-4C33-A585-AC22C6B31E98}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebLinking.DemoApi", "demo\WebLinking.DemoApi\WebLinking.DemoApi.csproj", "{1664302E-74F9-44AC-A823-4CE00C10C67E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{202EC000-1A0D-48C8-BB58-34A8E83D54F3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLinking.Core.Tests.UnitTests", "tests\WebLinking.Core.Tests.UnitTests\WebLinking.Core.Tests.UnitTests.csproj", "{ABF4B9E7-6DDD-45B8-98B5-C4DBB24145D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLinking.Integration.AspNetCore.Tests.UnitTests", "tests\WebLinking.Integration.AspNetCore.Tests.UnitTests\WebLinking.Integration.AspNetCore.Tests.UnitTests.csproj", "{D03B4E79-5870-4693-B521-ECE08A6FFA9E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{46141B0F-3E8D-46FA-A3E0-6B6E9A916172}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLinking.Samples.SimpleApi", "samples\simple-api\WebLinking.Samples.SimpleApi\WebLinking.Samples.SimpleApi.csproj", "{1D0FAAB2-3F55-4BB3-A0C0-B492484CEC25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,10 +50,6 @@ Global
 		{01BF230E-3F73-4306-9179-3572B6DB8122}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01BF230E-3F73-4306-9179-3572B6DB8122}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01BF230E-3F73-4306-9179-3572B6DB8122}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1664302E-74F9-44AC-A823-4CE00C10C67E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1664302E-74F9-44AC-A823-4CE00C10C67E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1664302E-74F9-44AC-A823-4CE00C10C67E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1664302E-74F9-44AC-A823-4CE00C10C67E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ABF4B9E7-6DDD-45B8-98B5-C4DBB24145D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ABF4B9E7-6DDD-45B8-98B5-C4DBB24145D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABF4B9E7-6DDD-45B8-98B5-C4DBB24145D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -62,6 +58,10 @@ Global
 		{D03B4E79-5870-4693-B521-ECE08A6FFA9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D03B4E79-5870-4693-B521-ECE08A6FFA9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D03B4E79-5870-4693-B521-ECE08A6FFA9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D0FAAB2-3F55-4BB3-A0C0-B492484CEC25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D0FAAB2-3F55-4BB3-A0C0-B492484CEC25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D0FAAB2-3F55-4BB3-A0C0-B492484CEC25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D0FAAB2-3F55-4BB3-A0C0-B492484CEC25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,9 +69,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{1BC7FAE6-E0BA-498C-8D76-399F26DB1AB4} = {968D2F6F-40CC-41D9-84DF-CBDF9A2778B9}
 		{01BF230E-3F73-4306-9179-3572B6DB8122} = {968D2F6F-40CC-41D9-84DF-CBDF9A2778B9}
-		{1664302E-74F9-44AC-A823-4CE00C10C67E} = {8041FFB4-2897-4C33-A585-AC22C6B31E98}
 		{ABF4B9E7-6DDD-45B8-98B5-C4DBB24145D2} = {202EC000-1A0D-48C8-BB58-34A8E83D54F3}
 		{D03B4E79-5870-4693-B521-ECE08A6FFA9E} = {202EC000-1A0D-48C8-BB58-34A8E83D54F3}
+		{1D0FAAB2-3F55-4BB3-A0C0-B492484CEC25} = {46141B0F-3E8D-46FA-A3E0-6B6E9A916172}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A6E721C8-6502-4E64-BB76-EFEC1D7C721B}

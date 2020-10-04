@@ -1,4 +1,4 @@
-namespace WebLinking.DemoApi.Application
+namespace WebLinking.Samples.SimpleApi.Application
 {
     public static class RouteNames
     {

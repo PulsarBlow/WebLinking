@@ -1,7 +1,7 @@
-namespace WebLinking.DemoApi.Models
+namespace WebLinking.Samples.SimpleApi.Models
 {
     using System.Collections.Generic;
-    using WebLinking.Integration.AspNetCore;
+    using Integration.AspNetCore;
 
     public class PagedCollection<TModel> : IPagedCollection<TModel>
     {
@@ -15,7 +15,7 @@ namespace WebLinking.DemoApi.Models
 
         public int TotalSize { get; set; }
 
-        public ICollection<TModel> Items { get; private set; } = new List<TModel>();
+        public ICollection<TModel> Items { get; private set; }
 
         public PagedCollection(IEnumerable<TModel> items)
         {
