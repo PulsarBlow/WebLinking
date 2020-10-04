@@ -2,7 +2,6 @@ namespace WebLinking.Integration.AspNetCore.Tests.UnitTests.Internals
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
     using AspNetCore.Internals;
     using Core;
@@ -140,9 +139,6 @@ namespace WebLinking.Integration.AspNetCore.Tests.UnitTests.Internals
 
             var linkValues = result as LinkValue[] ?? result.ToArray();
 
-            Assert.Equal(
-                3,
-                linkValues.Length);
             Assert.Contains(
                 _start,
                 linkValues,
@@ -169,19 +165,17 @@ namespace WebLinking.Integration.AspNetCore.Tests.UnitTests.Internals
 
             var linkValues = result as LinkValue[] ?? result.ToArray();
 
-            Assert.Equal(
-                2,
-                linkValues.Length);
             Assert.Contains(
                 _start,
                 linkValues,
                 _comparer);
-            Assert.DoesNotContain(
-                _previous,
-                linkValues,
-                _comparer);
             Assert.Contains(
                 _next,
+                linkValues,
+                _comparer);
+
+            Assert.DoesNotContain(
+                _previous,
                 linkValues,
                 _comparer);
         }
@@ -234,16 +228,8 @@ namespace WebLinking.Integration.AspNetCore.Tests.UnitTests.Internals
             public bool Equals(
                 LinkValue x,
                 LinkValue y)
-            {
-                Debug.Assert(
-                    x != null,
-                    nameof(x) + " != null");
-                Debug.Assert(
-                    y != null,
-                    nameof(y) + " != null");
-                return x.RelationType.ToString() == y.RelationType.ToString()
-                    && x.TargetUri.ToString() == y.TargetUri.ToString();
-            }
+                => x?.RelationType.ToString() == y?.RelationType.ToString()
+                    && x?.TargetUri.ToString() == y?.TargetUri.ToString();
 
             public int GetHashCode(
                 LinkValue obj)

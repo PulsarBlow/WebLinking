@@ -24,7 +24,7 @@ namespace WebLinking.Integration.AspNetCore.Internals
             if (string.IsNullOrWhiteSpace(relationType))
             {
                 throw new ArgumentException(
-                    "relationType is not valid",
+                    "Relation type is not valid",
                     nameof(relationType));
             }
 
