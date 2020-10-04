@@ -12,12 +12,12 @@ This .NET Standard library is a strict implementation of this specification.
 
 ## Getting Started
 
-This implementation provides two .NET Standard 2.0 NuGet packages and a demo MVC application.
+This implementation provides two .NET Standard 2.0 NuGet packages and a sample API.
 
 ### WebLinking.Core
 
 The core implementation of the specification.\
-Provides Link header format definition and abstractions.\
+Provides Link header format definition and abstractions.
 
 This library helps you add Web Linking RFC support into your .NET Application (.NET Framework or .NET Core).
 
@@ -27,19 +27,41 @@ This library helps you add Web Linking RFC support into your .NET Application (.
 
 AspNet Core MVC integration layer and abstractions.
 
-This library helps you integrate Web Linking support into your ASP.NET Core MVC application.\
+This library helps you integrate Web Linking support into your ASP.NET Core MVC application.
 
 `dotnet add package WebLinking.Integration.AspNetCore`
 
-### WebLinking.DemoApi
+### WebLinking.Samples.SimpleApi
 
-A sample project to demo how to integrate WebLinking into an AspNetCore Mvc application.
+A sample project to demo how to integrate WebLinking into an AspNetCore Mvc application.\
+Found in the [samples/simple-api](./samples/simple-api/) directory.
+
+Once your run this demo api, you can fetch a paginated collection of values.\
+Responses contains a Link headers containing a set a Web Links to navigate throught the collection.
+
+__Example__
+
+_Request_
+
+We fetch 10 values, starting from the 10th one.
+
+`GET https://localhost:5001/api/values?offset=10&limit=10`
+
+_Response_
+
+The API returns the 10 requested values and a set of Links to navigate within the set:
+
+-  `start`: the begining of the collection
+-  `previous`: the previous set of 10 values
+-  `next`: the next set of 10 values
+
+`Link: <https://localhost:5001/api/values?offset=0&limit=10>; rel="start",<https://localhost:5001/api/values?offset=0&limit=10>; rel="previous",<https://localhost:5001/api/values?offset=20&limit=10>; rel="next"`
 
 ## What is Web Linking ?
 
 Without being limited to that, Web Link is often seen as an API pagination mean.\
 It is a lightweight alternative to HATOAS, where pagination cursors are embedded in the resource representation.\
-With Web Linking, pagination cursors are sent in the header of the HTTP response.\
+With Web Linking, pagination cursors are sent in the header of the HTTP response.
 
 For example, [Github API v3](https://developer.github.com/v3/#pagination) uses Web Linking to express pagination cursors :
 

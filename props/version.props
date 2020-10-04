@@ -1,0 +1,9 @@
+<Project>
+
+  <PropertyGroup>
+    <VersionPrefix>1.0.1</VersionPrefix>
+    <VersionSuffix>beta</VersionSuffix>
+    <VersionSuffix Condition=" '$(VersionSuffix)' != '' AND '$(BuildNumber)' != '' ">$(VersionSuffix).$(BuildNumber)</VersionSuffix>
+  </PropertyGroup>
+
+</Project>

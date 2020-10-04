@@ -1,6 +1,6 @@
-namespace WebLinking.DemoApi.Application.Data
+namespace WebLinking.Samples.SimpleApi.Application.Data
 {
-    using WebLinking.DemoApi.Models;
+    using Models;
 
     public interface IValueStore
     {

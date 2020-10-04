@@ -1,4 +1,4 @@
-namespace WebLinking.DemoApi.Models
+namespace WebLinking.Samples.SimpleApi.Models
 {
     public class ValueModel
     {

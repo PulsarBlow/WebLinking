@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="../../build/common.props"/>
+  <Import Project="..\..\props\common.props"/>
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../src/WebLinking.Core/WebLinking.Core.csproj"/>
+    <ProjectReference Include="..\..\src\WebLinking.Core\WebLinking.Core.csproj"/>
   </ItemGroup>
 
 </Project>

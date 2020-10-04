@@ -1,23 +1,18 @@
-namespace WebLinking.DemoApi.Application.Data
+namespace WebLinking.Samples.SimpleApi.Application.Data
 {
     using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
-    using WebLinking.DemoApi.Models;
+    using Models;
 
     public class MemoryValueStore : IValueStore
     {
         private static readonly ConcurrentDictionary<int, ValueModel> Data = new ConcurrentDictionary<int, ValueModel>(GenerateData());
 
         public ValueModel GetById(int id)
-        {
-            if (!Data.ContainsKey(id))
-            {
-                return null;
-            }
-
-            return Data[id];
-        }
+            => !Data.ContainsKey(id)
+                ? null
+                : Data[id];
 
         public PagedCollection<ValueModel> GetPagedCollection(int offset, int limit)
         {
@@ -35,7 +30,7 @@ namespace WebLinking.DemoApi.Application.Data
         private static Dictionary<int, ValueModel> GenerateData(int number = 1000)
         {
             var result = new Dictionary<int, ValueModel>(number);
-            for (int i = 0; i < number; i++)
+            for (var i = 0; i < number; i++)
             {
                 result.Add(
                     i,
