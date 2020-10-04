@@ -8,13 +8,14 @@ namespace WebLinking.Integration.AspNetCore.Mvc
     {
         private readonly IPagedCollection<T> _pagedCollection;
 
-        public PagedCollectionResult(IPagedCollection<T> pagedCollection)
+        public PagedCollectionResult(
+            IPagedCollection<T> pagedCollection)
             : base(pagedCollection)
-        {
-            _pagedCollection = pagedCollection ?? throw new ArgumentNullException(nameof(pagedCollection));
-        }
+            => _pagedCollection = pagedCollection
+                ?? throw new ArgumentNullException(nameof(pagedCollection));
 
-        public override async Task ExecuteResultAsync(ActionContext context)
+        public override async Task ExecuteResultAsync(
+            ActionContext context)
         {
             if (context == null)
             {
@@ -23,12 +24,10 @@ namespace WebLinking.Integration.AspNetCore.Mvc
 
             var links = context.GetLinkValues(_pagedCollection);
             var response = context.HttpContext.Response;
-            if (!response.HasStarted)
-            {
-                response.Headers.AddWebLink(links);
-            }
+            if (!response.HasStarted) { response.Headers.AddWebLink(links); }
 
-            await base.ExecuteResultAsync(context).ConfigureAwait(false);
+            await base.ExecuteResultAsync(context)
+                .ConfigureAwait(false);
         }
     }
 }

@@ -22,7 +22,7 @@ echo ""
 
 echo "-- Packaging"
 rm -rf .build/nuget
-dotnet pack -o .build/nuget --include-symbols -c Release -p:RepositoryBranch=$GIT_BRANCH -p:RepositoryCommit=$GIT_COMMIT
+dotnet pack -o .build/nuget --include-symbols -c Release -p:RepositoryBranch="$GIT_BRANCH" -p:RepositoryCommit="$GIT_COMMIT"
 echo ""
 
 echo "== Packaging successfull"

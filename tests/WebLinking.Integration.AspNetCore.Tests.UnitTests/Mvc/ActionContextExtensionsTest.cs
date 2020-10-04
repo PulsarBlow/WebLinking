@@ -3,28 +3,39 @@ namespace WebLinking.Integration.AspNetCore.Tests.UnitTests.Mvc
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AspNetCore.Mvc;
+    using Core;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Abstractions;
     using Microsoft.AspNetCore.Routing;
-    using WebLinking.Integration.AspNetCore.Mvc;
     using Xunit;
 
     public class ActionContextExtensionsTest
     {
+        private const string Scheme = "http";
+        private const string Host = "localhost";
+        private const string PathBase = "/path-base";
+        private const string Path = "/path";
+        private const string QueryString = "?key=value";
+
         [Fact]
         public void GetLinkValues_Throws_When_ActionContext_Is_Null()
         {
             Assert.Throws<ArgumentNullException>(
                 "context",
-                () => ActionContextExtensions.GetLinkValues(null, new ObjectPagedCollection()));
+                () => ActionContextExtensions.GetLinkValues(
+                    null,
+                    new ObjectPagedCollection()));
         }
 
         [Fact]
-        public void GetLinkValues_Returns_EmptyCollection_When_PagedCollection_Is_Null()
+        public void
+            GetLinkValues_Returns_EmptyCollection_When_PagedCollection_Is_Null()
         {
-            var result = ActionContextExtensions.GetLinkValues(new ActionContext(), (IPagedCollection<object>)null);
-
+            var result =
+                new ActionContext().GetLinkValues(
+                    (IPagedCollection<object>) null);
             Assert.Empty(result);
         }
 
@@ -32,32 +43,67 @@ namespace WebLinking.Integration.AspNetCore.Tests.UnitTests.Mvc
         public void GetLinkValues_Returns_LinkValues()
         {
             var httpContext = new DefaultHttpContext();
-            httpContext.Request.Host = new HostString("localhost", 80);
-            httpContext.Request.PathBase = new PathString("/pathbase");
-            httpContext.Request.Path = new PathString("/path");
-            httpContext.Request.QueryString = new QueryString("?key=value");
-            httpContext.Request.Scheme = "http";
+            httpContext.Request.Host = new HostString(
+                Host,
+                80);
+            httpContext.Request.PathBase = new PathString(PathBase);
+            httpContext.Request.Path = new PathString(Path);
+            httpContext.Request.QueryString = new QueryString(QueryString);
+            httpContext.Request.Scheme = Scheme;
 
-            var pagedCollection = new ObjectPagedCollection()
+            const int limit = 1;
+            const int startOffset = 0;
+            const int nextOffset = 2;
+            const int previousOffset = 0;
+
+            var pagedCollection = new ObjectPagedCollection
             {
                 HasNext = true,
                 HasPrevious = true,
                 Items = new object[] { "item1", "item2" },
-                Limit = 1,
+                Limit = limit,
                 Offset = 1,
                 TotalSize = 2,
             };
 
-            var actionContext = new ActionContext(httpContext, new RouteData(), new ActionDescriptor());
+            var actionContext = new ActionContext(
+                httpContext,
+                new RouteData(),
+                new ActionDescriptor());
 
-            var result = actionContext.GetLinkValues(pagedCollection).ToList();
+            var result = actionContext.GetLinkValues(pagedCollection)
+                .ToList();
 
-            Assert.NotNull(result);
-            Assert.Equal(3, result.Count);
-            Assert.Equal("<http://localhost/pathbase/path?key=value&offset=0&limit=1>; rel=\"start\"", result[0].ToString());
-            Assert.Equal("<http://localhost/pathbase/path?key=value&offset=0&limit=1>; rel=\"previous\"", result[1].ToString());
-            Assert.Equal("<http://localhost/pathbase/path?key=value&offset=2&limit=1>; rel=\"next\"", result[2].ToString());
+            Assert.Equal(
+                CreateLinkValue(
+                    startOffset,
+                    limit,
+                    LinkRelationRegistry.Start),
+                result[0]
+                    .ToString());
+
+            Assert.Equal(
+                CreateLinkValue(
+                    previousOffset,
+                    limit,
+                    LinkRelationRegistry.Previous),
+                result[1]
+                    .ToString());
+
+            Assert.Equal(
+                CreateLinkValue(
+                    nextOffset,
+                    limit,
+                    LinkRelationRegistry.Next),
+                result[2]
+                    .ToString());
         }
+
+        private string CreateLinkValue(
+            int offset,
+            int limit,
+            string rel)
+            => $"<{Scheme}://{Host}{PathBase}{Path}{QueryString}&offset={offset}&limit={limit}>; rel=\"{rel}\"";
 
         private class ObjectPagedCollection : IPagedCollection<object>
         {

@@ -17,7 +17,8 @@ namespace WebLinking.Samples.SimpleApi.Models
 
         public ICollection<TModel> Items { get; private set; }
 
-        public PagedCollection(IEnumerable<TModel> items)
+        public PagedCollection(
+            IEnumerable<TModel> items)
         {
             Items = new List<TModel>(items ?? new TModel[] { });
         }

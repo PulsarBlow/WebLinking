@@ -51,15 +51,12 @@ namespace WebLinking.Samples.SimpleApi.Controllers
         public ActionResult<ValueModel> Get(
             int id)
         {
-            if (id < 0)
-            {
-                ModelState.AddModelError(
-                    "id",
-                    "id must be a positive number");
-                return BadRequest(ModelState);
-            }
+            if (id >= 0) { return _valueStore.GetById(id); }
 
-            return _valueStore.GetById(id);
+            ModelState.AddModelError(
+                "id",
+                "id must be a positive number");
+            return BadRequest(ModelState);
         }
     }
 }

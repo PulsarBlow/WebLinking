@@ -2,15 +2,16 @@ namespace WebLinking.Integration.AspNetCore.Tests.UnitTests
 {
     using System;
     using System.Collections.Generic;
+    using Core;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Primitives;
     using Moq;
-    using WebLinking.Core;
     using Xunit;
 
     public class IHeaderDictionaryExtensionsTest
     {
-        private readonly Mock<IHeaderDictionary> _headerDictionaryMock = new Mock<IHeaderDictionary>();
+        private readonly Mock<IHeaderDictionary> _headerDictionaryMock =
+            new Mock<IHeaderDictionary>();
 
         private readonly LinkValue _start = new LinkValue
         {
@@ -31,15 +32,22 @@ namespace WebLinking.Integration.AspNetCore.Tests.UnitTests
         {
             Assert.Throws<ArgumentNullException>(
                 "headers",
-                () => IHeaderDictionaryExtensions.AddWebLink(null, new LinkValue()));
+                () => IHeaderDictionaryExtensions.AddWebLink(
+                    null,
+                    new LinkValue()));
 
             Assert.Throws<ArgumentNullException>(
                 "headers",
-                () => IHeaderDictionaryExtensions.AddWebLink(null, new List<LinkValue>()));
+                () => IHeaderDictionaryExtensions.AddWebLink(
+                    null,
+                    new List<LinkValue>()));
 
             Assert.Throws<ArgumentNullException>(
                 "headers",
-                () => IHeaderDictionaryExtensions.AddWebLink(null, new LinkValue(), new LinkValue()));
+                () => IHeaderDictionaryExtensions.AddWebLink(
+                    null,
+                    new LinkValue(),
+                    new LinkValue()));
         }
 
         [Fact]
@@ -47,17 +55,20 @@ namespace WebLinking.Integration.AspNetCore.Tests.UnitTests
         {
             Assert.Throws<ArgumentNullException>(
                 "linkValue",
-                () => IHeaderDictionaryExtensions.AddWebLink(_headerDictionaryMock.Object, (LinkValue)null));
+                () => _headerDictionaryMock.Object.AddWebLink(
+                    (LinkValue) null));
         }
 
         [Fact]
         public void AddWebLink_Adds_Link_Using_LinkValue_To_Headers()
         {
-            var result = IHeaderDictionaryExtensions.AddWebLink(_headerDictionaryMock.Object, _start);
+            _headerDictionaryMock.Object.AddWebLink(_start);
 
-            _headerDictionaryMock.Verify(x => x.Add(
-                It.Is<string>(s => s == "Link"),
-                It.Is<StringValues>(sv => sv.ToString() == _start.ToString())));
+            _headerDictionaryMock.Verify(
+                x => x.Add(
+                    It.Is<string>(s => s == "Link"),
+                    It.Is<StringValues>(
+                        sv => sv.ToString() == _start.ToString())));
         }
 
         [Fact]
@@ -65,27 +76,36 @@ namespace WebLinking.Integration.AspNetCore.Tests.UnitTests
         {
             Assert.Throws<ArgumentNullException>(
                 "linkValueCollection",
-                () => IHeaderDictionaryExtensions.AddWebLink(_headerDictionaryMock.Object, (IEnumerable<LinkValue>)null));
+                () => _headerDictionaryMock.Object.AddWebLink(
+                    (IEnumerable<LinkValue>) null));
         }
 
         [Fact]
         public void AddWebLink_Adds_Link_Using_LinkValueCollection_To_Headers()
         {
-            var result = IHeaderDictionaryExtensions.AddWebLink(_headerDictionaryMock.Object, new[] { _start, _previous });
+            _headerDictionaryMock.Object.AddWebLink(
+                _start,
+                _previous);
 
-            _headerDictionaryMock.Verify(x => x.Add(
-                It.Is<string>(s => s == "Link"),
-                It.Is<StringValues>(sv => sv.ToString() == $"{_start},{_previous}")));
+            _headerDictionaryMock.Verify(
+                x => x.Add(
+                    It.Is<string>(s => s == "Link"),
+                    It.Is<StringValues>(
+                        sv => sv.ToString() == $"{_start},{_previous}")));
         }
 
         [Fact]
         public void AddWebLink_Adds_Link_Using_LinkValueParams_To_Headers()
         {
-            var result = IHeaderDictionaryExtensions.AddWebLink(_headerDictionaryMock.Object, _start, _previous);
+            _headerDictionaryMock.Object.AddWebLink(
+                _start,
+                _previous);
 
-            _headerDictionaryMock.Verify(x => x.Add(
-                It.Is<string>(s => s == "Link"),
-                It.Is<StringValues>(sv => sv.ToString() == $"{_start},{_previous}")));
+            _headerDictionaryMock.Verify(
+                x => x.Add(
+                    It.Is<string>(s => s == "Link"),
+                    It.Is<StringValues>(
+                        sv => sv.ToString() == $"{_start},{_previous}")));
         }
     }
 }
