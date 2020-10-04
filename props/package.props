@@ -17,10 +17,12 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
 
     <PackageReleaseNotes>
-      * 1.0.1
+      * 1.0.11
+      - Various code cleanups
+      * 1.0.1-beta
       - Add support for net461 (as per dotnet standard guidelines)
       - Upgrade external dependencies
-      * 1.0.0
+      * 1.0.0-beta
       - Initial version
     </PackageReleaseNotes>
   </PropertyGroup>
