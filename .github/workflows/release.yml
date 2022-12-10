@@ -8,7 +8,7 @@ on:
   push:
     # Sequence of patterns matched against refs/tags
     tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+      - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
 
 name: Release
 jobs:
@@ -20,11 +20,11 @@ jobs:
       GIT_BRANCH: ${{github.ref}}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+        uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 3.1.401
+          global-json-file: global.json
       - name: Build project
         run: dotnet build -c Release
       - name: Generate package
@@ -43,13 +43,13 @@ jobs:
     env:
       NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 3.1.401
+          global-json-file: csharp/global.json
           source-url: https://nuget.pkg.github.com/PulsarBlow/index.json
       - name: Download Build Artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: packages
           path: .
@@ -64,12 +64,12 @@ jobs:
     env:
       NUGET_AUTH_TOKEN: ${{ secrets.NUGET_AUTH_TOKEN }}
     steps:
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 3.1.401
+          global-json-file: csharp/global.json
       - name: Download Build Artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: packages
           path: .
@@ -79,7 +79,7 @@ jobs:
 
   create-github-release:
     name: Create Github release
-    needs: [ publish-to-github, publish-to-nuget ]
+    needs: [publish-to-github, publish-to-nuget]
     runs-on: ubuntu-latest
     steps:
       - name: Create Release

@@ -2,24 +2,24 @@
 
 > A .NET implementation of the Web Linking proposed standard [RFC8288](https://tools.ietf.org/html/rfc8288)
 
-[![NuGet](https://img.shields.io/nuget/v/WebLinking.Core.svg)](https://www.nuget.org/packages/WebLinking.Core/) [![netstandard 2.0](https://img.shields.io/badge/netstandard-2.0-brightgreen.svg)](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/0d75f07b773d406bad11fd33d52f9601)](https://www.codacy.com/gh/PulsarBlow/WebLinking/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=PulsarBlow/WebLinking&amp;utm_campaign=Badge_Grade) [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/0d75f07b773d406bad11fd33d52f9601)](https://www.codacy.com/gh/PulsarBlow/WebLinking/dashboard?utm_source=github.com&utm_medium=referral&utm_content=PulsarBlow/WebLinking&utm_campaign=Badge_Coverage)
+[![NuGet](https://img.shields.io/nuget/v/WebLinking.Core.svg)](https://www.nuget.org/packages/WebLinking.Core/) [![net 5.0](https://img.shields.io/badge/net-5.0-brightgreen.svg)](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-5) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/0d75f07b773d406bad11fd33d52f9601)](https://www.codacy.com/gh/PulsarBlow/WebLinking/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=PulsarBlow/WebLinking&amp;utm_campaign=Badge_Grade) [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/0d75f07b773d406bad11fd33d52f9601)](https://www.codacy.com/gh/PulsarBlow/WebLinking/dashboard?utm_source=github.com&utm_medium=referral&utm_content=PulsarBlow/WebLinking&utm_campaign=Badge_Coverage)
 
 The RFC8288 is a [IETF](https://www.ietf.org/) specification that defines a model for the relationships between resources on the Web ("links") and the type of those relationships ("link relation types"). It also defines the serialisation of such links in HTTP headers with the `Link` header field.
 
-This .NET Standard library is a strict implementation of this specification.
+This .NET library is a strict implementation of this specification.
 
 ---
 
 ## Getting Started
 
-This implementation provides two .NET Standard 2.0 NuGet packages and a sample API.
+This implementation provides two .NET 5.0 NuGet packages and a sample AspNet Core API.
 
 ### WebLinking.Core
 
 The core implementation of the specification.\
 Provides Link header format definition and abstractions.
 
-This library helps you add Web Linking RFC support into your .NET Application (.NET Framework or .NET Core).
+This library helps you add Web Linking RFC support into your .NET Application.
 
 `dotnet add package WebLinking.Core`
 
