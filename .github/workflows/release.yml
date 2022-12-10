@@ -30,11 +30,13 @@ jobs:
       - name: Generate package
         run: |
           ./scripts/nuget-pack.sh
-      - name: Upload Build Artifact
-        uses: actions/upload-artifact@v2
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v3
         with:
-          name: packages
-          path: .build/nuget
+          name: artifacts
+          path: |
+            .build/nuget
+            global.json
 
   publish-to-github:
     name: Publish to Github
@@ -43,19 +45,19 @@ jobs:
     env:
       NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
+      - name: Download Build Artifact # need to come first for the global.json
+        uses: actions/download-artifact@v3
+        with:
+          name: artifacts
+          path: .
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           global-json-file: global.json
           source-url: https://nuget.pkg.github.com/PulsarBlow/index.json
-      - name: Download Build Artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: packages
-          path: .
       - name: Publish package
         run: |
-          dotnet nuget push "*.nupkg" --skip-duplicate
+          dotnet nuget push ".build/nuget/*.nupkg" --skip-duplicate
 
   publish-to-nuget:
     name: Publish to NuGet
@@ -64,18 +66,18 @@ jobs:
     env:
       NUGET_AUTH_TOKEN: ${{ secrets.NUGET_AUTH_TOKEN }}
     steps:
+      - name: Download Build Artifact # need to come first for the global.json
+        uses: actions/download-artifact@v3
+        with:
+          name: artifacts
+          path: .
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           global-json-file: global.json
-      - name: Download Build Artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: packages
-          path: .
       - name: Publish package
         run: |
-          dotnet nuget push "*.nupkg" -k $NUGET_AUTH_TOKEN -sk $NUGET_AUTH_TOKEN --skip-duplicate -s https://api.nuget.org/v3/index.json
+          dotnet nuget push ".build/nuget/*.nupkg" -k $NUGET_AUTH_TOKEN -sk $NUGET_AUTH_TOKEN --skip-duplicate -s https://api.nuget.org/v3/index.json
 
   create-github-release:
     name: Create Github release
