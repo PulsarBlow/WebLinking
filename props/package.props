@@ -17,6 +17,8 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
 
     <PackageReleaseNotes>
+      * 2.0.0
+      - Upgrade solution to .NET 5 (SDK 5.0.408)
       * 1.0.11
       - Various code cleanups
       * 1.0.1-beta
@@ -28,7 +30,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
