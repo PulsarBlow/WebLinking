@@ -46,7 +46,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          global-json-file: csharp/global.json
+          global-json-file: global.json
           source-url: https://nuget.pkg.github.com/PulsarBlow/index.json
       - name: Download Build Artifact
         uses: actions/download-artifact@v3
@@ -67,7 +67,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          global-json-file: csharp/global.json
+          global-json-file: global.json
       - name: Download Build Artifact
         uses: actions/download-artifact@v3
         with:
