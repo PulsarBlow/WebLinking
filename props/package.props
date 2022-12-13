@@ -8,7 +8,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/PulsarBlow/WebLinking/</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageTags>weblinking rfc8288 rfc5988 dotnet-standard</PackageTags>
+    <PackageTags>weblinking rfc8288 rfc5988 dotnet6 net6</PackageTags>
     <RepositoryUrl>https://github.com/PulsarBlow/WebLinking/</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <IncludeSymbols>true</IncludeSymbols>
@@ -17,6 +17,8 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
 
     <PackageReleaseNotes>
+      * 3.0.0
+      - Upgrade solution to .NET 6 (SDK 6.0.x)
       * 2.0.0
       - Upgrade solution to .NET 5 (SDK 5.0.408)
       * 1.0.11

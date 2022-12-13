@@ -1,6 +1,12 @@
-# Web Linking for .NET
+<p align="center">
+  <img alt="WebLinking logo" src="assets/banner-1280x640.png" />
+</p>
+<h1 align="center">
+  Web Linking for .NET
+</h1>
 
-> A .NET implementation of the Web Linking proposed standard [RFC8288](https://tools.ietf.org/html/rfc8288)
+<h4 align="center">A .NET implementation of the Web Linking proposed
+standard [RFC8288](https://tools.ietf.org/html/rfc8288)</h4>
 
 [![NuGet](https://img.shields.io/nuget/v/WebLinking.Core.svg)](https://www.nuget.org/packages/WebLinking.Core/) [![net 6.0](https://img.shields.io/badge/net-6.0-brightgreen.svg)](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-6) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/0d75f07b773d406bad11fd33d52f9601)](https://www.codacy.com/gh/PulsarBlow/WebLinking/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=PulsarBlow/WebLinking&amp;utm_campaign=Badge_Grade) [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/0d75f07b773d406bad11fd33d52f9601)](https://www.codacy.com/gh/PulsarBlow/WebLinking/dashboard?utm_source=github.com&utm_medium=referral&utm_content=PulsarBlow/WebLinking&utm_campaign=Badge_Coverage)
 
