@@ -1,11 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="..\..\props\common.props"/>
-  <Import Project="..\..\props\package.props"/>
-
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\props\package.props" />
   <PropertyGroup>
     <Title>WebLinking Core</Title>
     <PackageId>WebLinking.Core</PackageId>
     <PackageDescription>A .NET implementation of the Web Linking proposed standard RFC8288</PackageDescription>
   </PropertyGroup>
-
 </Project>

@@ -46,12 +46,12 @@ namespace WebLinking.Integration.AspNetCore.Tests.UnitTests.Mvc
         }
 
         [Fact]
-        public void ExecuteResultAsync_Throws_When_Context_Is_Null()
+        public async Task ExecuteResultAsync_Throws_When_Context_Is_Null()
         {
             var pagedCollectionResult =
                 new PagedCollectionResult<object>(_pagedCollectionMock.Object);
 
-            Assert.ThrowsAsync<ArgumentNullException>(
+            await Assert.ThrowsAsync<ArgumentNullException>(
                 () => pagedCollectionResult.ExecuteResultAsync(null));
         }
 
@@ -78,8 +78,7 @@ namespace WebLinking.Integration.AspNetCore.Tests.UnitTests.Mvc
                 new RouteData(),
                 new ActionDescriptor());
 
-            await pagedCollectionResult.ExecuteResultAsync(actionContext)
-                .ConfigureAwait(false);
+            await pagedCollectionResult.ExecuteResultAsync(actionContext);
 
             _headerDictionaryMock.Verify(
                 x => x.Add(

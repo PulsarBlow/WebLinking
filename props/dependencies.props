@@ -1,9 +1,9 @@
 <Project>
   <PropertyGroup Label="Package Versions">
-    <CoverletMsBuildVersion>2.9.0</CoverletMsBuildVersion>
-    <MoqVersion>4.14.6</MoqVersion>
-    <TestSdkVersion>16.7.1</TestSdkVersion>
-    <XunitVersion>2.4.1</XunitVersion>
-    <XUnitRunnerVersion>2.4.1</XUnitRunnerVersion>
+    <CoverletMsBuildVersion>6.0.3</CoverletMsBuildVersion>
+    <MoqVersion>4.20.72</MoqVersion>
+    <TestSdkVersion>17.11.1</TestSdkVersion>
+    <XunitVersion>2.9.2</XunitVersion>
+    <XUnitRunnerVersion>3.0.1</XUnitRunnerVersion>
   </PropertyGroup>
 </Project>

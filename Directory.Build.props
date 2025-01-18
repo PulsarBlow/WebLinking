@@ -1,0 +1,20 @@
+<Project>
+
+  <Import Project="Props\dependencies.props"/>
+  <Import Project="Props\version.props"/>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <LangVersion>10.0</LangVersion>
+    <NoWarn>$(NoWarn)</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType Condition=" '$(Configuration)' != 'Debug' ">portable</DebugType>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <Product>WebLinking</Product>
+  </PropertyGroup>
+
+</Project>
